@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ImgToBasic</title>
+		<script type="text/javascript" src="size.js"></script>
+    </head>
+    <body>
+	<!--
+	0-----------------------------------------------0
+	|												|
+	|			ATTENTION: CODE DEGUEULASSE			|
+	|												|
+	0-----------------------------------------------0	
+	-->
+	<center>
+	<input type=file value="Importer l'image" id="input_img" onChange="Display();"><br><br>
+	<div id=endroit></div>
+	<canvas id=canvas width=200px height=200px style="border:2px solid;"></canvas>
+	<h3>Code:</h3><br>
+	<p>Encoder en:</p>
+	<button OnClick="load();" id="start" disabled>Anglais</button><button OnClick="loadfr();" id="startfr" disabled>Francais</button><button OnClick="loadCC();" id="startCC" disabled>CC</button><br>
+	<textarea id=text></textarea><br>
+	<button OnClick="reset();" id="reset">Reset</button>
+	<br><br><br><br><br><br><p>Script de Geektor_ pour Ti-Planet</p> <!-- L'abus de <br> est dangereux pour la santé -->
+	</center>
+	</body>
+<script>
+var x = 0;
+var y = 0;
+var ySize = 1000;
+var xSize = 1000;
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+var text = document.getElementById('text');
+var input = document.getElementById("input_img");
+
+function Display(){
+var endroit = document.getElementById("endroit");
+var reader = new FileReader();
+
+reader.onload = function() {
+    var image = new Image();
+    image.src = reader.result;
+	endroit.appendChild(image);
+	image.onload = function() {
+    ctx.drawImage(image, 0, 0);
+}
+}
+reader.readAsDataURL(input.files[0]);
+
+document.getElementById("start").disabled=false;
+document.getElementById("startfr").disabled=false;
+document.getElementById("startCC").disabled=false;
+}
+
+//Encodage dans la langue de shakespeare
+
+function loadCC(){
+var render = "";
+for (y = 0; y < ySize; y++) {
+for (x = 0; x < xSize; x++) {
+pixelData = canvas.getContext('2d').getImageData(x,y, 1, 1).data;
+if (pixelData[3] == 0){
+render = render + "f";
+} else if(pixelData[3] != 0){
+render = render + "3"; //ou b
+}
+}
+render = render + "\n"}
+text.value = render;
+}
+
+function load(){
+var render = "";
+for (x = 0; x < 200; x++) {
+for (y = 0; y < 200; y++) {
+pixelData = canvas.getContext('2d').getImageData(x,y, 1, 1).data;
+if (pixelData[3] == 0){
+render = render + "";
+} else if(pixelData[0] == 0 && pixelData[1] == 160 && pixelData[2] == 0){
+render = render + "Pxl-On(Z+"+y+",X+"+x+",GREEN)\r";
+} else if(pixelData[0] == 255 && pixelData[1] == 0 && pixelData[2] == 0){
+render = render + "Pxl-On(Z+"+y+",X+"+x+",RED)\r";
+} else if(pixelData[0] == 0 && pixelData[1] == 0 && pixelData[2] == 255){
+render = render + "Pxl-On(Z+"+y+",X+"+x+",BLUE)\r";
+} else if(pixelData[0] == 255 && pixelData[1] == 150 && pixelData[2] == 0){
+render = render + "Pxl-On(Z+"+y+",X+"+x+",ORANGE)\r";
+} else if(pixelData[0] == 255 && pixelData[1] == 255 && pixelData[2] == 0){
+render = render + "Pxl-On(Z+"+y+",X+"+x+",YELLOW)\r";
+} else if(pixelData[0] == 0 && pixelData[1] == 0 && pixelData[2] == 0){
+render = render + "Pxl-On(Z+"+y+",X+"+x+",BLACK)\r";
+} else if(pixelData[0] == 82 && pixelData[1] == 82 && pixelData[2] == 82){
+render = render + "Pxl-On(Z+"+y+",X+"+x+",DARKGRAY)\r";
+} else if(pixelData[0] == 140 && pixelData[1] == 140 && pixelData[2] == 140){
+render = render + "Pxl-On(Z+"+y+",X+"+x+",GRAY)\r";
+} else if(pixelData[0] == 200 && pixelData[1] == 200 && pixelData[2] == 200){
+render = render + "Pxl-On(Z+"+y+",X+"+x+",MEDGRAY)\r";
+} else if(pixelData[0] == 230 && pixelData[1] == 230 && pixelData[2] == 230){
+render = render + "Pxl-On(Z+"+y+",X+"+x+",LTGRAY)\r";
+} else if(pixelData[0] == 255 && pixelData[1] == 255 && pixelData[2] == 255){
+render = render + "Pxl-On(Z+"+y+",X+"+x+",WHITE)\r";
+} else if(pixelData[0] == 0 && pixelData[1] == 150 && pixelData[2] == 255){
+render = render + "Pxl-On(Z+"+y+",X+"+x+",LTBLUE)\r";
+} else if(pixelData[0] == 0 && pixelData[1] == 0 && pixelData[2] == 150){
+render = render + "Pxl-On(Z+"+y+",X+"+x+",NAVY)\r";
+}else if(pixelData[0] == 150 && pixelData[1] == 50 && pixelData[2] == 0){
+render = render + "Pxl-On(Z+"+y+",X+"+x+",BROWN)\r";
+}else if(pixelData[0] == 200 && pixelData[1] == 0 && pixelData[2] == 150){
+render = render + "Pxl-On(Z+"+y+",X+"+x+",MAGENTA)\r";
+}
+}}
+text.value = render;
+}
+
+//Encodage dans notre bon vieux latin
+
+function loadfr(){
+var render = "";
+for (x = 0; x < 200; x++) {
+for (y = 0; y < 200; y++) {
+pixelData = canvas.getContext('2d').getImageData(x,y, 1, 1).data;
+if (pixelData[3] == 0){
+render = render + "";
+} else if(pixelData[0] == 0 && pixelData[1] == 160 && pixelData[2] == 0){
+render = render + "Pxl-Aff(Z+"+y+",X+"+x+",VERT)\r";
+} else if(pixelData[0] == 255 && pixelData[1] == 0 && pixelData[2] == 0){
+render = render + "Pxl-Aff(Z+"+y+",X+"+x+",ROUGE)\r";
+} else if(pixelData[0] == 0 && pixelData[1] == 0 && pixelData[2] == 255){
+render = render + "Pxl-Aff(Z+"+y+",X+"+x+",BLEU)\r";
+} else if(pixelData[0] == 255 && pixelData[1] == 150 && pixelData[2] == 0){
+render = render + "Pxl-Aff(Z+"+y+",X+"+x+",ORANGE)\r";
+} else if(pixelData[0] == 255 && pixelData[1] == 255 && pixelData[2] == 0){
+render = render + "Pxl-Aff(Z+"+y+",X+"+x+",JAUNE)\r";
+} else if(pixelData[0] == 0 && pixelData[1] == 0 && pixelData[2] == 0){
+render = render + "Pxl-Aff(Z+"+y+",X+"+x+",NOIR)\r";
+} else if(pixelData[0] == 82 && pixelData[1] == 82 && pixelData[2] == 82){
+render = render + "Pxl-Aff(Z+"+y+",X+"+x+",GRIS FON)\r"; //d'or mdr
+} else if(pixelData[0] == 140 && pixelData[1] == 140 && pixelData[2] == 140){
+render = render + "Pxl-Aff(Z+"+y+",X+"+x+",GRIS)\r";
+} else if(pixelData[0] == 200 && pixelData[1] == 200 && pixelData[2] == 200){
+render = render + "Pxl-Aff(Z+"+y+",X+"+x+",GRIS MOY)\r";
+} else if(pixelData[0] == 230 && pixelData[1] == 230 && pixelData[2] == 230){
+render = render + "Pxl-Aff(Z+"+y+",X+"+x+",GRIS CLR)\r";
+} else if(pixelData[0] == 255 && pixelData[1] == 255 && pixelData[2] == 255){
+render = render + "Pxl-Aff(Z+"+y+",X+"+x+",BLANC)\r";
+} else if(pixelData[0] == 0 && pixelData[1] == 150 && pixelData[2] == 255){
+render = render + "Pxl-Aff(Z+"+y+",X+"+x+",BLEU CLR)\r";
+} else if(pixelData[0] == 0 && pixelData[1] == 0 && pixelData[2] == 150){
+render = render + "Pxl-Aff(Z+"+y+",X+"+x+",BLEU MRN)\r";
+}else if(pixelData[0] == 150 && pixelData[1] == 50 && pixelData[2] == 0){
+render = render + "Pxl-Aff(Z+"+y+",X+"+x+",MARRON)\r";
+}else if(pixelData[0] == 200 && pixelData[1] == 0 && pixelData[2] == 150){
+render = render + "Pxl-Aff(Z+"+y+",X+"+x+",MAGENTA)\r";
+}
+}}
+text.value = render;
+}
+
+function reset(){
+text.value="";
+input.value="";
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+</script>	
+</html>
+	

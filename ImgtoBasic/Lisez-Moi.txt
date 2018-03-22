@@ -1,0 +1,37 @@
+Le code est relatif à X et Z, c'est a dire que si X = Z = 0,
+l'image commencera en haut à gauche de l'écran graphique.
+J'utilise Z car Y se reset au ClrDraw.
+
+
+Couleur de la calculatrice:
+Exemple: R,G,B - #hexadecimal
+Vert: 0,160,0 #00A000
+Rouge: 255,0,0 #FF0000
+Bleu: 0,0,255 #0000FF
+Bleu Claire: 0,150,255 #0096FF
+Bleu Foncé: 0,0,150 #000096
+Orange: 255,150,0 #FF9600
+Jaune: 255,255,0 #FFFF00
+Noir: 0,0,0 #000000
+Blanc: 255,255,255 #FFFFFF
+Gris Foncé: 82,82,82 #525252
+Gris: 140,140,140 #8C8C8C
+Gris medium: 200,200,200 #C8C8C8
+Gris Clair: 230,230,230 #E6E6E6
+Marron: 150,50,0 #963200
+Magenta: 200,0,150 #C80096
+
+Pour recoloriser vos images à celle de la calculatrice,
+Utilisez photoshop ( ou White Rabbit: Version gratuite* de Ps),
+chargez votre image, allez dans "mode" ( menu de haut )
+et selectionnez "indexed color". Dans "palette", choisissez "custom",
+puis "load". Cherchez le fichier de palette en ".aco" et validez.
+Dans les options, mettez tous sur "none".
+Validez puis enregistrer votre image. Elle est prète pour le script !
+
+Sinon, utilisez photofiltre à l'aide de l'image étalon/palette.
+
+
+
+White rabbit*:
+http://hugesharing.net/2RA/Adobe_Photoshop_CS5(www.dawoodbashir.blogspot.com).rar
